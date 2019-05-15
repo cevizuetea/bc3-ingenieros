@@ -1,0 +1,68 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+                <button onclick="location.href='/materiales'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">Material: {{ materiales.codigomaterial }}  </spam>
+                <hr>
+                 <center>
+                <table class="tabla2">
+                  <tbody>
+                    <tr>
+                      <th class="fila" >Su ID es:</th>
+                      <td class="fila">{{ materiales.id }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Código:</th>
+                      <td class="fila">{{ materiales.codigomaterial }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Nombre:</th>
+                      <td class="fila">{{ materiales.nombrematerial }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Descripción:</th>
+                      <td class="fila">{{ materiales.descripcionmaterial }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Marca:</th>
+                      <td class="fila">{{ marcas.nombremarca }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Cantidad:</th>
+                      <td class="fila">{{ materiales.cantidad }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Precio Unitario:</th>
+                      <td class="fila">$ {{ materiales.preciounitario }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Precio Total:</th>
+                      <td class="fila">$ {{ materiales.preciototal }} </td>
+                    </tr>
+                  </tbody>
+                </table>                
+                </center> 
+				<hr>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

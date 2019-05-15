@@ -1,0 +1,236 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css"/>-->
+{% endblock %}
+{% block body %}
+
+<!--DIV CONTENDO-->
+        
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                			
+ 				<spam class="titulo">PROYECTOS: {{ estado.nombreestadoproyecto}}</spam>
+                <hr>
+ 				{% if estados %}
+ 				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estados </button>
+				    <div class="dropdown-menu">
+				    	{% for estados in estados %} 
+				      		<a class="dropdown-item" href="/reporte/proy_estado/{{ estados.idestadoproyecto }}">{{ estados.nombreestadoproyecto}}</a>
+				      	{% endfor %}
+				    </div>
+				  </div>
+				</div>
+ 					
+ 				{% else %}
+					<p> No hay trabajadores registrados aún </p>
+				{% endif %}
+ 				
+                <!-- DataTables -->
+                <div class="card mb-3">
+                  	<div class="card-body">
+                    	<div class="table-responsive">
+                    	{% if proyectos %}
+                      		<table class="table table-bordered" id="reporte1" width="100%" cellspacing="0">
+		                        <thead>
+		                          <tr class="card-header">
+		                            <th>Id.</th>
+		                            <th>Proyecto</th>
+		                            <th>Dirección</th>
+		                            <th>Fecha de inicio</th>
+		                            <th>Fecha fin</th>
+		                            
+		                          </tr>
+		                        </thead>
+		                        <tfoot>
+		                          <tr>
+		                            <th>Id.</th>
+		                            <th>Proyecto</th>
+		                            <th>Dirección</th>
+		                            <th>Fecha de inicio</th>
+		                            <th>Fecha fin</th>
+		                            
+		                          </tr>
+		                        </tfoot>
+                        		<tbody>    
+                        		{% for proyecto in proyectos %}                    
+			                        <tr>
+			                        	<td>{{ proyecto.idproyecto}}</td>
+			                         	<td>{{ proyecto.nombreproyecto}}</td>
+			                            <td>{{ proyecto.direccionproyecto }}</td>
+			                            <td>{{ proyecto.fechainicio  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}}</td>
+			                            <td>{{ proyecto.fechafin  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}}</td>
+			                        </tr>   
+			                    {% endfor %}   
+
+		                        </tbody>
+                      		</table>
+                      	{% else %}
+							<p> No hay proyectos registrados en ese estado </p>
+						{% endif %}
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+              <!-- /.container-fluid -->
+</div>
+            <!-- /.content-wrapper -->
+            <!--fin Contenido-->
+
+
+
+{% endblock %}
+
+ {% block javascripts %}
+<script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
+
+
+<script type="text/javascript">
+
+$( document ).ready(function() {
+$('#reporte1').DataTable({
+"language": {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "|<",
+            "last": ">|",
+            "next": "Sig.",
+            "previous": "Ant."
+        }
+    },
+
+     "processing": true,
+     "order": [0, 'desc'],
+     "dom": 'lBfrtip',
+     "paging":   false,
+        "ordering": false,
+        "info":     false,
+        "searching": false,
+     "buttons": [
+            {
+                extend: 'pdfHtml5', 
+                className: 'btn btn-success ',
+                alignment: 'center',
+                //orientation: 'landscape', horizontal
+                text: ' PDF',
+                header: true,
+			    title: 'Trabajadores',
+
+			   exportOptions: {
+						columns: ':visible',
+						search: 'applied',
+						order: 'applied'
+
+					},
+				customize: function (doc) {
+						//Remove the title created by datatTables
+						doc.content.splice(0,1);
+						//Create a date string that we use in the footer. Format is dd-mm-yyyy
+						var now = new Date();
+						var jsDate = now.getDate()+'-'+(now.getMonth()+1)+'-'+now.getFullYear();
+						// It's important to create enough space at the top for a header !!!
+						doc.pageMargins = [60,130,40,30];
+						// Set the font size fot the entire document
+						doc.defaultStyle.fontSize = 10;
+						// Set the fontsize for the table header
+						doc.styles.tableHeader.fontSize = 11;
+
+						doc['header']=(function() {
+							return {
+								columns: [
+									{
+										text: 'Trabajadores',
+										width: 24
+									},
+									{
+										alignment: 'center',
+										italics: true,
+										text: 'Trabajadores ingresados en el año de 2018 ',
+										fontSize: 12,
+										margin: [10,0]
+									},
+									
+								],
+
+								margin: 50
+							}
+						});
+
+						doc['footer']=(function(page, pages) {
+							return {
+								columns: [
+									{
+										alignment: 'left',
+										text: ['Created on: ', { text: jsDate.toString() }]
+									},
+									{
+										alignment: 'right',
+										text: ['page ', { text: page.toString() },	' of ',	{ text: pages.toString() }]
+									}
+								],
+								margin: 20
+							}
+						});
+
+						var objLayout = {};
+						objLayout['hLineWidth'] = function(i) { return .5; };
+						objLayout['vLineWidth'] = function(i) { return .5; };
+						objLayout['hLineColor'] = function(i) { return '#aaa'; }; //color lienas horiontales
+						objLayout['vLineColor'] = function(i) { return '#aaa'; };
+						objLayout['paddingLeft'] = function(i) { return 10; };
+						objLayout['paddingRight'] = function(i) { return 10; };
+						objLayout['paddingTop'] = function(i) { return 4; };
+						objLayout['paddingBottom'] = function(i) { return 4; };
+
+
+						doc.content[0].layout = objLayout;
+
+						}	
+
+            }
+
+        ]
+
+
+        });
+
+
+});
+
+
+
+
+
+</script>
+{% endblock %}

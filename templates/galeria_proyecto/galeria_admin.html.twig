@@ -1,0 +1,81 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<!--DIV CONTENDO-->
+        
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">             
+				
+ 				<button onclick="location.href='/proyecto/show/{{ proyecto.idproyecto }}'" class=" boton_tabla float-right"> &nbsp;Regresar</button>  
+
+ 				<spam class="titulo">Galería de la fecha: {{ avance.fechaavance  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}}</spam>
+                <hr>
+					<!-- cards-->	
+					<ul class="ch-grid" style="color:white" >
+					{% if galeria %}
+					<div class="card-group mt-4 mb-4 p-2 ">
+					
+					{% for galerias in galeria  %}
+						<li class="my-5 data-info">
+						<div class="card mx-2 text-center rounded-0 " style="border: none;  border-radius:4px;">
+							<img class=" my-2  px-2 card-img-top img-fluid rounded d-block mx-auto  zoom" style="height: 190px; width: 220px; margin-bottom: 5px;" src="{{ asset('uploads/galeria/' ~ galerias.nombreimagen) }}"  alt="Card image cap" >
+							<div class="card-body">
+								<h6 class="card-title text-center" style="color:black">{{ galerias.descripcion }}</h6>
+								<!--<a href=""  class="icono_tabla" class="VisualizarD" title="Ver" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-eye" aria-hidden="true" ></i></a>-->
+								<a href="/galeria/eliminar/{{ galerias.id}}/{{ avance.id }}/{{ proyecto.idproyecto }}" title="Eliminar" class="icono_tabla " onclick="if (! confirm('Esta seguro de eliminar esta imagen')) return false;" ><i class="fa fa-eraser" aria-hidden="true"></i></a>
+							    							    
+							</div>
+						</div><li>							
+					{% endfor %}
+					
+					</div>
+					{% else %}
+							<p> No hay avances registrados aún </p>
+					{% endif %}  
+					</ul>             
+            </div>
+        </div>
+    </div>
+              <!-- /.container-fluid -->
+</div>
+            <!-- /.content-wrapper -->
+            <!--fin Contenido-->
+
+<!-- Modal ver disciplina -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<input type="text" readOnly= "true" name="id" class="form-control" id="id">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+					<br>
+					<!--<img class=""  src=""  alt="" name="nombreimagen">-->
+					<input type="text" readOnly = "true" name="nombreimagen" class="form-control" id="nombreimagen">
+				</center>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--Fin modal disciplina-->	
+{% endblock %}		
+
+ 
+

@@ -1,0 +1,148 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+                <button onclick="location.href='/trabajador/list'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">Trabajador: {{ trabajadores.nombres }} {{ trabajadores.apellidos }} </spam>
+                <hr>
+				
+                <center>
+                <table class="tabla2">
+                  <tbody >
+                    <tr  >
+                      <th class="fila" >Su ID es:</th>
+                      <td  class="fila">{{ trabajadores.idtrabajador }}</td>
+                    </tr>
+                    <tr  >
+                      <th class="fila" >Cédula:</th>
+                      <td  class="fila">{{ trabajadores.ci }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Nombres:</th>
+                      <td class="fila">{{ trabajadores.nombres }} {{ trabajadores.apellidos }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Cargo:</th>
+                      <td class="fila">{{ cargos.nombrecargo }} </td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Dirección:</th>
+                      <td class="fila">{{ trabajadores.direccion }} </td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Teléfono:</th>
+                      <td class="fila">{{ trabajadores.telefono }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Sueldo:</th>
+                      <td class="fila">${{ trabajadores.sueldo }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Disponibilidad:</th>
+                      {% if trabajadores.disponibilidad  == 1 %}
+                        <td class="fila">Ocupado</td>
+                      {% else %}
+                        <td class="fila">Libre</td>
+                      {% endif %}
+                    </tr>
+                    <tr>
+                        <th class="fila">Fecha de ingreso:</th>
+                        <td class="fila"> {{ trabajadores.fechaingreso  | date('d - M - Y')|replace({
+                          'Enero'  : 'Enero',
+                          'Diciembre' : 'Diciembre',
+                          'Lunes'   : 'Lunes',                  
+                          'Domingo'   : 'Domingo'
+                        })}} 
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="fila">Fecha de salida:</th>
+                        <td class="fila"> {{ trabajadores.fechasalida  | date('d - M - Y')|replace({
+                          'Enero'  : 'Enero',
+                          'Diciembre' : 'Diciembre',
+                          'Lunes'   : 'Lunes',                  
+                          'Domingo'   : 'Domingo'
+                        })}} 
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>                
+                </center>
+                <hr>
+                Seguimiento
+                <!-- DataTables -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      {% if seguimientotrabajador %}
+                          <table class="table table-bordered" id="datos" width="100%" cellspacing="0">
+                            <thead>
+                              <tr class="card-header">
+                                <th>Proyecto</th>
+                                <th>Descripción</th>
+                                <th>Fecha</th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th>Proyecto</th>
+                                <th>Descripción</th>
+                                <th>Fecha</th>
+                              </tr>
+                            </tfoot>
+                            <tbody>    
+                            {% for seguimientotrabajador in seguimientotrabajador %}                    
+                              <tr>
+                                  <td>
+                                    {% for proyectos in proyectos %} 
+                                      {% if proyectos.idproyecto  == seguimientotrabajador.proyectoid %} 
+                                         {{ proyectos.nombreproyecto }}
+                                        {% endif %}
+                                    {% endfor %}                                  
+                                   </td>
+                                  <td>{% if seguimientotrabajador.eliminado  == 0 %} 
+                                      Eliminado
+                                      {% else %}
+                                      Asignado
+                                    {% endif %}
+                                   </td>
+                                  <td>{{ seguimientotrabajador.fecha  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}} </td>
+  
+                              </tr>   
+                          {% endfor %}           
+                            </tbody>
+                          </table>
+                        {% else %}
+                      <p> No hay registros aún </p>
+                    {% endif %}
+                      </div>
+                    </div>
+                </div>
+              <!-- FIN DataTables -->
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

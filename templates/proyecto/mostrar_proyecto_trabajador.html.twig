@@ -1,0 +1,238 @@
+{% extends 'base_empleado.html.twig' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+                <button onclick="location.href='/proyectos/user'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">{{ proyectos.nombreproyecto }}</spam>
+                <hr>
+                <center>
+                <div  class="row">
+                <div class="col" >
+                  <table class="tabla2">
+                    <tbody >
+                      <tr>
+                        <th class="fila" >Su ID es:</th>
+                        <td  class="fila">{{ proyectos.idproyecto }}</td>
+                      </tr>
+                      <tr>
+                        <th class="fila">Dirección:</th>
+                        <td class="fila">{{ proyectos.direccionproyecto }}</td>
+                      </tr>
+                       <tr>
+                        <th class="fila">Cliente:</th>
+                        <td class="fila">{{ cliente.nombrecliente }} </td>
+                      </tr>
+                      <tr>
+                        <th class="fila">Estado:</th>
+                        <td class="fila">{{ estados.nombreestadoproyecto }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+
+                <div class="col" >
+                  <table class="tabla2">
+                    <tbody >
+                      <tr>
+                        <th class="fila" >Trabajador responsable:</th>
+                        <td  class="fila">{{ trabajador.nombres }} {{ trabajador.apellidos }}</td>
+                      </tr>
+                      <tr>
+                        <th class="fila">Fecha de inicio:</th>
+                        <td class="fila">{{ proyectos.fechainicio  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}}</td>
+                      </tr>
+                      <tr>
+                        <th class="fila">Fecha de finalización:</th>
+                        <td class="fila">{{ proyectos.fechafin  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}}</td>
+                      </tr>
+                      <tr>
+                        <th class="fila">Cotización (PDF):</th>
+                        <td class="fila" style="color:black"><h5><a href="{{ asset('uploads/archivos/' ~ proyectos.archivocotizacion) }}"  target="_blank">Abrir PDF </a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+                  </center>
+              <hr>
+              <spam class="titulo">Avances del proyecto</spam>
+              <!-- DataTables -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      {% if avancesproyecto %}
+                          <table class=" table table-bordered" id="" width="100%"  cellspacing="0">
+                            <thead>
+                              <tr class="card-header" >
+                                <th>Fecha</th>
+                                <th>Observaciones</th>
+                                <th>Avance (PDF)</th>
+                                <th><center>Opciones</center></th>
+                              </tr>
+                            </thead>
+                            <tbody>    
+                           {% for avancesproyectos in avancesproyecto  %}                    
+                                  <tr>
+                                      <td>{{ avancesproyectos.fechaavance  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}} </td>
+                                      <td>{{ avancesproyectos.observaciones }}</td>
+                                      <td><a href="{{ asset('uploads/avances/' ~ avancesproyectos.archivoavance) }}"  target="_blank">Abrir PDF </a> </td>
+                                      <td>
+                                        <center>                    
+                                        <a href="/galeria/{{ avancesproyectos.id}}/{{ proyectos.idproyecto }}" title="Ver galería" class="icono_tabla " ><i class="fa fa-picture-o" aria-hidden="true"></i></a>
+                                        </center>
+                                      </td>
+                                  </tr>   
+                          {% endfor %}           
+                            </tbody>
+                          </table>
+                        {% else %}
+                        <p> No hay trabajadores asignados aún </p>
+                      {% endif %}
+                      </div>
+                    </div>
+                </div>     
+              <!-- Fin DataTables --> 
+				      <hr> 
+              <spam class="titulo">Herramientas asignadas</spam>
+              <!-- DataTables -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      {% if materialesseguimiento %}
+                          <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                            <thead>
+                              <tr class="card-header">
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Cantidad Asignada</th>
+                              </tr>
+                            </thead>
+                            <tbody>    
+                           {% for materialseguimiento in materialesseguimiento  %}                    
+                                  <tr>
+                                      <td>{{ materialseguimiento.codigomaterial}}</td>
+                                      <td>{{ materialseguimiento.materialnombre}}</td>
+                                      <td>{{ materialseguimiento.cantidadusar}}</td>
+                                      
+                                  </tr>   
+                          {% endfor %}           
+                            </tbody>
+                          </table>
+                        {% else %}
+                        <p> No hay materiales asignados aún </p>
+                      {% endif %}
+                      </div>
+                    </div>
+                </div>     
+              <!-- Fin DataTables --> 
+              <hr> 
+              <spam class="titulo">Materiales asignados</spam>
+              <!-- DataTables -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      {% if materialesseguimiento %}
+                          <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                            <thead>
+                              <tr class="card-header">
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Cantidad Asignada</th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Cantidad Asignada</th>
+                              </tr>
+                            </tfoot>
+                            <tbody>    
+                           {% for materialseguimiento in materialesseguimiento  %}                    
+                                  <tr>
+                                      <td>{{ materialseguimiento.codigomaterial}}</td>
+                                      <td>{{ materialseguimiento.materialnombre}}</td>
+                                      <td>{{ materialseguimiento.cantidadusar}}</td>
+                                      
+                                  </tr>   
+                          {% endfor %}           
+                            </tbody>
+                          </table>
+                        {% else %}
+                        <p> No hay materiales asignados aún </p>
+                      {% endif %}
+                      </div>
+                    </div>
+                </div>     
+              <!-- Fin DataTables --> 
+              <hr> 
+              <spam class="titulo">Trabajadores asignados</spam>
+              <!-- DataTables -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      {% if trabajadoresasignados %}
+                          <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                            <thead>
+                              <tr class="card-header">
+                                <th>Id.</th>
+                                <th>Cédula</th>
+                                <th>Nombres</th>
+                              </tr>
+                            </thead>
+                            <tbody>    
+                           {% for trabajadoresseguimientos in trabajadoresseguimiento  %}                    
+                                  <tr>
+                                      <td>{{ trabajadoresseguimientos.trabajadorid }} </td>
+                                      <td>{{ trabajadoresseguimientos.cedulatrabajador }} </td>
+                                      <td>{{ trabajadoresseguimientos.nombrestrabajador }} {{ trabajadoresseguimientos.apellidostrabajador }}</td>
+                                     
+                                      </td>
+                                  </tr>   
+                          {% endfor %}           
+                            </tbody>
+                          </table>
+                        {% else %}
+                        <p> No hay trabajadores asignados aún </p>
+                      {% endif %}
+                      </div>
+                    </div>
+                </div>     
+              <!-- Fin DataTables --> 
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

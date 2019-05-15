@@ -1,0 +1,104 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Compras{% endblock %}
+
+{% block body %}
+
+<!--DIV CONTENDO-->
+        
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <center>
+                <div class="row"
+                <div class="container text-center col-lg-6 col-centrada">
+					<div class="container-fluid" style="height: 25px">
+							 {% for flash_message in app.session.flashbag.get('notice') %}
+							 	<div class="alert alert-success" id="mensaje">
+									<!--<div class="flash-notice">-->
+			        						{{ flash_message }}
+			    					<!--</div>-->
+			    				</div>
+							{% endfor %}
+							{% for flash_message in app.session.flashbag.get('error') %}
+                                <div class="flash-notice" style="color:red">
+                                    {{ flash_message }}
+                            	</div>
+                			{% endfor %}						
+					</div>
+				</div>
+				</div>
+				</center>
+ 				<button onclick="location.href='compra/new'" class=" boton_tabla float-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Nuevo</button>            
+ 				<spam class="titulo">COMPRAS</spam>
+                <hr>
+
+                <!-- DataTables -->
+                <div class="card mb-3">
+                  	<div class="card-body">
+                    	<div class="table-responsive">
+                    	{% if compras %}
+                      		<table class="table table-bordered" id="datos" width="100%" cellspacing="0">
+		                        <thead>
+		                          <tr class="card-header">
+		                            <th>Nº Factura</th>
+		                            <th>Fecha emisión</th>
+		                            <th>Sub Total</th>
+		                            <th>Iva 12%</th>
+		                            <th>Total</th>
+		                            <th>Opciones</th>
+		                          </tr>
+		                        </thead>
+		                        <tfoot>
+		                          <tr>
+		                            <th>Nº Factura</th>
+		                            <th>Fecha emisión</th>		                           
+		                            <th>Sub Total</th>
+		                            <th>Iva 12%</th>
+		                            <th>Total</th>
+		                            <th>Opciones</th>
+		                          </tr>
+		                        </tfoot>
+                        		<tbody>    
+                        		{% for compra in compras %}                    
+			                        <tr>
+			                         	<td>{{ compra.numerofactura }}</td>
+			                         	<td>{{ compra.fechaemision | date('d - M - Y')|replace({
+							                  'Enero'  : 'Enero',
+							                  'Diciembre' : 'Diciembre',
+							                  'Lunes'   : 'Lunes',                  
+							                  'Domingo'   : 'Domingo'
+							                })}} </td>
+									    <td>{{ compra.subtotal }}</td>
+			                            <td>{{ compra.iva }}</td>
+			                            <td>{{ compra.total }}</td>
+			                            <td>
+				                            <center>	
+				                            <a href="/compra/show/{{ compra.id }}"  class="icono_tabla "  ><i class="fa fa-eye" aria-hidden="true"></i></a>                
+				                            <a href="/compra/edit/{{ compra.id }}" title="Editar" class="icono_tabla "  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				                            <a href="/detalle/compra/{{ compra.id }}" title="Detalle compra" class="icono_tabla "  ><i class="fa fa-cart-plus"></i></a>
+				                          	<a href="/compra/delete/{{ compra.id }}" title="Eliminar" class="icono_tabla " onclick="if (! confirm('Esta seguro de eliminar a: {{ compra.numerofactura }}')) return false;"><i class="fa fa-eraser" aria-hidden="true"></i></a>
+				                          	</center>
+				                        </td>
+			                        </tr>   
+			                    {% endfor %}           
+		                        </tbody>
+                      		</table>
+                      	{% else %}
+							<p> No hay compras registradas aun </p>
+						{% endif %}
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+              <!-- /.container-fluid -->
+</div>
+            <!-- /.content-wrapper -->
+            <!--fin Contenido-->
+
+   
+{% endblock %}

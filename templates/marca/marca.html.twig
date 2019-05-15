@@ -1,0 +1,87 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}marca{% endblock %}
+
+{% block body %}
+
+<!--DIV CONTENDO-->
+        
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <center>
+                <div class="row"
+                <div class="container text-center col-lg-6 col-centrada">
+					<div class="container-fluid" style="height: 25px">
+							 {% for flash_message in app.session.flashbag.get('notice') %}
+							 	<div class="alert alert-success" id="mensaje">
+									<!--<div class="flash-notice">-->
+			        						{{ flash_message }}
+			    					<!--</div>-->
+			    				</div>
+							{% endfor %}						
+					</div>
+				</div>
+				</div>
+				</center>
+
+ 				<button onclick="location.href='marca/new'" class=" boton_tabla float-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Nuevo</button>            
+ 				<spam class="titulo">MARCAS</spam>
+                <hr>
+                <!-- DataTables -->
+                <div class="card mb-3">
+                  	<div class="card-body">
+                    	<div class="table-responsive">
+                    	{% if marcas %}
+                      		<table class="table table-bordered" id="datos" width="100%" cellspacing="0">
+		                        <thead>
+		                          <tr class="card-header">
+		                            <th>Código</th>
+		                            <th>Nombre</th>
+		                            <th>Descripción</th>
+		                            <th>Opciones</th>
+		                          </tr>
+		                        </thead>
+		                        <tfoot>
+		                          <tr>
+		                            <th>Código</th>
+		                            <th>Nombre</th>
+		                            <th>Descripción</th>
+		                            <th>Opciones</th>
+		                          </tr>
+		                        </tfoot>
+                        		<tbody>    
+                        		{% for marca in marcas %}                    
+			                        <tr>
+			                         	<td>{{ marca.id }}</td>
+			                            <td>{{ marca.nombremarca }}</td>
+			                            <td>{{ marca.descripcion }}</td>
+			                            <td>
+				                            <center>	                  
+				                            <a href="/marca/show/{{ marca.id }}"  class="icono_tabla "  ><i class="fa fa-eye" aria-hidden="true"></i></a>
+				                            <a href="/marca/edit/{{ marca.id }}" title="Editar" class="icono_tabla "  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				                            <a href="/marca/delete/{{ marca.id }}" title="Eliminar" class="icono_tabla " onclick="if (! confirm('Esta seguro de eliminar a: {{ marca.nombremarca }}')) return false;"><i class="fa fa-eraser" aria-hidden="true"></i></a>
+				                            </center>
+				                        </td>
+			                        </tr>   
+			                    {% endfor %}           
+		                        </tbody>
+                      		</table>
+                      	{% else %}
+							<p> No hay marcas registradas aun </p>
+						{% endif %}
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+              <!-- /.container-fluid -->
+</div>
+            <!-- /.content-wrapper -->
+            <!--fin Contenido-->
+
+   
+{% endblock %}

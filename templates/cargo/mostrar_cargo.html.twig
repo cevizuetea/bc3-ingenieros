@@ -1,0 +1,51 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{ cargos.id }}{% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+                <button onclick="location.href='/cargos'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">Cargo: {{ cargos.nombrecargo  }}</spam>
+                <hr>
+                <center>
+                <table class="tabla2">
+                  <tbody >
+                    <tr>
+                      <th class="fila" >Su ID es:</th>
+                      <td  class="fila">{{ cargos.idcargo  }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Nombre:</th>
+                      <td class="fila">{{ cargos.nombrecargo }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Descripción:</th>
+                      <td class="fila">{{ cargos.descripcion }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Rol:</th>
+                      <td class="fila">{{ cargos.rol }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                </center>                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

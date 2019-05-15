@@ -1,0 +1,162 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+                <button onclick="location.href='/herramientas'" class=" boton_tabla float-right">&nbsp;Regresar</button>  
+
+                <spam class="titulo">Herramienta: {{ herramientas.codigo }}</spam>
+                <hr>
+                <center>
+                <table class="tabla2">
+                  <tbody >
+                    <tr>
+                      <th class="fila" >Su ID es:</th>
+                      <td  class="fila">{{ herramientas.id }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Código:</th>
+                      <td class="fila">{{ herramientas.codigo }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Nombre:</th>
+                      <td class="fila">{{ herramientas.nombreherramienta }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Descripción:</th>
+                      <td class="fila">{{ herramientas.descripcionherramienta }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Marca:</th>
+                      <td class="fila">{{ marcas.nombremarca }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Estado:</th>
+                      <td class="fila">{{ estados.nombreestado }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Disponibilidad:</th>
+                      {% if herramientas.ocupado == 1 %}
+                        <td class="fila">Ocupado</td>
+                      {% else %}
+                        <td class="fila">Disponible</td>
+                      {% endif %}
+                    </tr>
+                  </tbody>
+                </table>
+				      <hr>
+              <!-- DataTables -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      {% if seguimiento %}
+                          <table class="table table-bordered" id="datos" width="100%" cellspacing="0">
+                            <thead>
+                              <tr class="card-header">
+                                <th>Proyecto</th>
+                                <th>Descripción</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th>Proyecto</th>
+                                <th>Descripción</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                              </tr>
+                            </tfoot>
+                            <tbody>    
+                            {% for seguimiento in seguimiento %}                    
+                              <tr>
+                                  <td>
+                                  {% if seguimiento.proyectoid == -1 %}
+                                    ---
+                                  {% else %}
+                                    {% for proyectos in proyectos %} 
+                                      {% if proyectos.idproyecto  == seguimiento.proyectoid %} 
+                                         {{ proyectos.nombreproyecto }}
+                                        {% endif %}
+                                    {% endfor %}
+                                  {% endif %}
+                                   </td>
+                                  <td>{% if seguimiento.eliminado  == 0 %} 
+                                      Eliminado
+                                      {% else %}
+                                      Asignado
+                                    {% endif %}
+                                   </td>
+                                  <td>{{ seguimiento.fecha  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}} </td>
+
+                                  <td>{% for estadosherramienta in estadosherramienta %} 
+                                    {% if estadosherramienta.idestado  == seguimiento.estadoid %} 
+                                      {{ estadosherramienta.nombreestado }}
+                                    {% endif %}
+                                  {% endfor %}
+                                </td>
+                                  
+                              </tr>   
+                          {% endfor %}           
+                            </tbody>
+                          </table>
+                        {% else %}
+                      <p> No hay registros aún </p>
+                    {% endif %}
+                      </div>
+                    </div>
+                </div>
+              <!-- FIN DataTables -->
+
+             <center><button class=" boton_tabla float-right" data-toggle="modal" data-target="#exampleModal">&nbsp;Modifiar Estado</button> </center>                 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Estado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="container col-lg-6 col-centrada ingresar">
+              {{ form_start(form) }}
+                {{ form_row(form.estadoid,  {'label_attr': {'class': 'label'}
+                         ,'attr': {'class': 'atributo'}} ) }}               
+              {{ form_end(form) }}
+              <br>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin Modal -->
+{% endblock %}

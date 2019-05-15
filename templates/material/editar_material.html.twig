@@ -1,0 +1,60 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}  {% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+                <button onclick="location.href='/materiales'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">Materiales</spam>
+                <hr>
+                <div class="row">
+                    <div class="container col-lg-6 col-centrada ingresar">
+                       <center> <spam class="titulo">Modificar información</spam></center>
+                        {{ form_start(form) }}
+                        {{ form_row(form.marcaid, {'label_attr': {'class': 'label'}
+                                                    ,'attr': {'class': 'atributo'}} ) }}           
+                        {{ form_row(form.nombrematerial, {'label_attr': {'class': 'label'}
+                                                    ,'attr': {'class': 'atributo'}} ) }}
+
+                        {{ form_row(form.descripcionmaterial, {'label_attr': {'class': 'label'}
+                                                    ,'attr': {'class': 'atributo'}} ) }}
+                        {% for flash_message in app.session.flashbag.get('error_cantidad') %}
+                                <div class="flash-notice" style="color:red">
+                                    {{ flash_message }}
+                                </div>
+                            {% endfor %}
+                        {{ form_row(form.cantidad, {'label_attr': {'class': 'label'}
+                                                    ,'attr': {'class': 'atributo'}} ) }}
+                        {% for flash_message in app.session.flashbag.get('error_precio') %}
+                                <div class="flash-notice" style="color:red">
+                                    {{ flash_message }}
+                                </div>
+                            {% endfor %}
+                        {{ form_row(form.preciounitario, {'label_attr': {'class': 'label'}
+                                                    ,'attr': {'class': 'atributo'}} ) }}
+                       
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+				<hr>
+                
+            </div>
+        </div>
+    </div>
+</div>
+	
+  
+
+{% endblock %}

@@ -1,0 +1,138 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}  {% endblock %}
+
+{% block body %}
+
+
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+    <!-- contenido -->
+        <div id="content-wrapper">
+      <div class="container-fluid">
+                <center>
+                <div class="row"
+                <div class="container text-center col-lg-6 col-centrada">
+                  <div class="container-fluid" style="height: 25px">
+                       {% for flash_message in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-success" id="mensaje">
+                          <!--<div class="flash-notice">-->
+                                  {{ flash_message }}
+                            <!--</div>-->
+                          </div>
+                      {% endfor %}            
+                  </div>
+                </div>
+                </div>
+                </center>
+                <button onclick="location.href='/proyectos'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">{{ proyectos.nombreproyecto }} </spam>
+                <hr>
+                <center>
+                <table class="tabla2">
+                  <tbody >
+                    <tr  >
+                      <th class="fila" >Persona responsable:</th>
+                      <td  class="fila">{{ trabajador.nombres }} {{ trabajador.apellidos }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Cliente:</th>
+                      <td class="fila">{{ cliente.nombrecliente }} </td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Dirección:</th>
+                      <td class="fila">{{ proyectos.direccionproyecto }}</td>
+                    </tr>
+                  </tbody>
+                </table>        
+                </center>
+                <center><br>
+                 <ul class="nav nav-tabs justify-content-around  ">
+                    <li class="nav-items">
+                        <a href="/asignar/herramientas/{{ proyectos.idproyecto }}" class="nav-link   hidden-md-down" style="color:black;">Herramientas</a>
+                    </li>
+                    <li>
+                        <a href="/asignar/materiales/{{ proyectos.idproyecto }}" class="nav-link " style="color:black;">Materiales</a>
+                    </li>
+                    <li>
+                        <a href="/asignar/trabajadores/{{ proyectos.idproyecto }}" class="nav-link active " style="color:black; background:#DCFFDC">Trabajadores</a>
+                    </li>
+                </ul>
+                <br>
+                <div class="row ingresar">
+                    <div class="container col-lg-4 col-centrada">
+                       <center> <spam class="titulo">Asignar trabajadores</spam></center>
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                            {{ form_row(form.idproyecto, {'label_attr': {'style': 'visibility: hidden; position: absolute'}
+                                                        ,'attr': {'style': 'visibility: hidden; position: absolute'}} ) }}
+                            {{ form_row(form.trabajadorid,  {'label_attr': {'class': 'label'}
+                                                        ,'attr': {'class': 'atributo'}} ) }}                
+                        {{ form_end(form) }}
+                    </div>
+                </div>    
+                <br>
+
+                <!-- DataTables -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      {% if trabajadoresasignados %}
+                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                              <tr class="card-header">
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th><center>Eliminar trabajador</center></th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Eliminar trabajador</th>
+                              </tr>
+                            </tfoot>
+                            <tbody>    
+                           {% for trabajadoresseguimientos in trabajadoresseguimiento  %}                    
+                                  <tr>
+                                      <td>{{ trabajadoresseguimientos.nombrestrabajador }}</td>
+                                      <td>{{ trabajadoresseguimientos.apellidostrabajador }}</td>
+                                      <td>
+                                        <center>                    
+                                        <a href="/editar/trabajador/disponible/{{ trabajadoresseguimientos.trabajadorid }}/{{ proyectos.idproyecto }}" title="Eliminar" class="icono_tabla " onclick="if (! confirm('Esta seguro de eliminar a: {{ trabajadoresseguimientos.nombrestrabajador }} {{ trabajadoresseguimientos.apellidostrabajador }}')) return false;" ><i class="fa fa-eraser" aria-hidden="true"></i></a>
+                                        </center>
+                                      </td>
+                                  </tr>   
+                          {% endfor %}           
+                            </tbody>
+                          </table>
+                        {% else %}
+                        <p> No hay trabajadores asignados aún </p>
+                      {% endif %}
+                      </div>
+                    </div>
+                </div>     
+              <!-- Fin DataTables --> 
+                <hr><br>
+                
+
+                
+             <hr>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+  
+  
+
+{% endblock %}
+
+ 

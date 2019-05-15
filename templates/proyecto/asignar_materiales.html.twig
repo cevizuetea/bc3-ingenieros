@@ -1,0 +1,143 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}  {% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+    <!-- contenido -->
+        <div id="content-wrapper">
+      <div class="container-fluid">
+                <center>
+                <div class="row"
+                <div class="container text-center col-lg-6 col-centrada">
+                  <div class="container-fluid" style="height: 25px">
+                       {% for flash_message in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-success" id="mensaje">
+                          <!--<div class="flash-notice">-->
+                                  {{ flash_message }}
+                            <!--</div>-->
+                          </div>
+                      {% endfor %}            
+                  </div>
+                </div>
+                </div>
+                </center>
+                <button onclick="location.href='/proyectos'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">{{ proyectos.nombreproyecto }} </spam>
+                <hr>
+                <center>
+                <table class="tabla2">
+                  <tbody >
+                    <tr  >
+                      <th class="fila" >Persona responsable:</th>
+                      <td  class="fila">{{ trabajador.nombres }} {{ trabajador.apellidos }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Cliente:</th>
+                      <td class="fila">{{ cliente.nombrecliente }} </td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Dirección:</th>
+                      <td class="fila">{{ proyectos.direccionproyecto }}</td>
+                    </tr>
+                  </tbody>
+                </table>        
+                </center>
+                <center><br>
+                 <ul class="nav nav-tabs justify-content-around  ">
+                    <li class="nav-items">
+                        <a href="/asignar/herramientas/{{ proyectos.idproyecto }}" class="nav-link   hidden-md-down" style="color:black;">Herramientas</a>
+                    </li>
+                    <li>
+                        <a href="/asignar/materiales/{{ proyectos.idproyecto }}" class="nav-link active " style="color:black; background:#DCFFDC">Materiales</a>
+                    </li>
+                    <li>
+                        <a href="/asignar/trabajadores/{{ proyectos.idproyecto }}" class="nav-link " style="color:black;">Trabajadores</a>
+                    </li>
+                </ul>
+                <br>
+                 <div class="row ingresar">
+                    <div class="container col-lg-4 col-centrada">
+                       <center> <spam class="titulo">Asignar materiales</spam></center>
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                            {{ form_row(form.proyectoid, {'label_attr': {'style': 'visibility: hidden; position: absolute'}
+                                                        ,'attr': {'style': 'visibility: hidden; position: absolute'}} ) }}
+                            {{ form_row(form.materialid,  {'label_attr': {'class': 'label'}
+                                                        ,'attr': {'class': 'atributo'}} ) }} 
+
+                            {% for flash_message in app.session.flashbag.get('error_cantidad') %}
+                                <div class="flash-notice" style="color:red">
+                                    {{ flash_message }}
+                                </div>
+                            {% endfor %}
+                            {% for flash_message in app.session.flashbag.get('error_uso') %}
+                                <div class="flash-notice" style="color:red">
+                                    {{ flash_message }}
+                                </div>
+                            {% endfor %}
+                            {{ form_row(form.cantidaduso,  {'label_attr': {'class': 'label'}
+                                                        ,'attr': {'class': 'atributo'}} ) }}               
+                        {{ form_end(form) }}
+                    </div>
+                </div>    
+                <hr><br>
+
+                <!-- DataTables -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      {% if materialesseguimiento %}
+                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                              <tr class="card-header">
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Cantidad Asignada</th>
+                                <th><center>Eliminar material</center></th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Cantidad Asignada</th>
+                                <th>Eliminar material</th>
+                              </tr>
+                            </tfoot>
+                            <tbody>    
+                           {% for materialseguimiento in materialesseguimiento  %}                    
+                                  <tr>
+                                      <td>{{ materialseguimiento.codigomaterial}}</td>
+                                      <td>{{ materialseguimiento.materialnombre}}</td>
+                                      <td>{{ materialseguimiento.cantidadusar}}</td>
+                                      <td>
+                                      <center>                    
+                                        <a href="/editar/material/seguimiento/{{ materialseguimiento.materialid }}/{{ proyectos.idproyecto }}/{{ materialseguimiento.cantidadusar }}" title="Eliminar" class="icono_tabla "  onclick="if (! confirm('Esta seguro de eliminar: {{ materialseguimiento.codigomaterial }}')) return false;"><i class="fa fa-eraser" aria-hidden="true"></i></a>
+                                        </center>                                     
+                                     </td>
+                                  </tr>   
+                          {% endfor %}           
+                            </tbody>
+                          </table>
+                        {% else %}
+                        <p> No hay materiales asignados aún </p>
+                      {% endif %}
+                      </div>
+                    </div>
+                </div>     
+              <!-- Fin DataTables -->
+
+                
+        <hr>
+                
+            </div>
+        </div>
+    </div>
+</div>
+  
+  
+
+{% endblock %}
+

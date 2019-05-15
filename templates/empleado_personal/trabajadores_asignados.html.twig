@@ -1,0 +1,91 @@
+{% extends 'base_empleado.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css"/>-->
+{% endblock %}
+{% block body %}
+
+<!--DIV CONTENDO-->
+        
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+ 				<button onclick="location.href='/trabajador/new'" class=" boton_tabla float-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Nuevo</button>            
+ 				<h4>Trabajadores - USUARIO EMPLEADO</h4>
+                <hr>
+
+                <!-- DataTables -->
+                <div class="card mb-3">
+                  	<div class="card-body">
+                    	<div class="table-responsive">
+                    	{% if trabajadores %}
+                      		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                        <thead>
+		                          <tr class="card-header">
+		                            <th>C.I.</th>
+		                            <th>Nombre y apellidos</th>
+		                            <th>Dirección</th>
+		                            <th>Sueldo</th>
+		                            <th>Opciones</th>
+		                          </tr>
+		                        </thead>
+		                        <tfoot>
+		                          <tr>
+		                            <th>C.I.</th>
+		                            <th>Nombre y apellidos</th>
+		                            <th>Dirección</th>
+		                        	<th>Sueldo</th>
+		                            <th>Opciones</th>
+		                          </tr>
+		                        </tfoot>
+                        		<tbody>    
+                        		{% for trabajador in trabajadores %}                    
+			                        <tr>
+			                         	<td>{{ trabajador.ci}}</td>
+			                            <td>{{ trabajador.nombres }} {{ trabajador.apellidos }}</td>
+			                            <td>{{ trabajador.direccion }}</td>
+			                            <td>{{ trabajador.sueldo }}</td>
+			                            <td>
+				                            <center>	                  
+				                            <a href="/trabajador/edit/{{ trabajador.idtrabajador }}" title="Editar" class="icono_tabla "  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				                            <a href="" title="Eliminar" class="icono_tabla " data-toggle="modal" data-target="#eliminararchivo" ><i class="fa fa-eraser" aria-hidden="true"></i></a>
+				                            <a href="/trabajador/show/{{ trabajador.idtrabajador }}"  class="icono_tabla "  ><i class="fa fa-eye" aria-hidden="true"></i></a></center>	                  
+				                            
+				                        </td>
+			                        </tr>   
+			                    {% endfor %}           
+		                        </tbody>
+                      		</table>
+                      	{% else %}
+							<p> No hay trabajadores registrados aún </p>
+						{% endif %}
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+              <!-- /.container-fluid -->
+</div>
+            <!-- /.content-wrapper -->
+            <!--fin Contenido-->
+
+   
+{% endblock %}
+
+ {% block javascripts %}
+ 
+{% endblock %}

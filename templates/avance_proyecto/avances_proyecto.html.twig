@@ -1,0 +1,122 @@
+{% extends 'base_empleado.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<!--DIV CONTENDO-->
+        
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <center>
+                <div class="row"
+                <div class="container text-center col-lg-6 col-centrada">
+					<div class="container-fluid" style="height: 25px">
+							 {% for flash_message in app.session.flashbag.get('notice') %}
+							 	<div class="alert alert-success" id="mensaje">
+									<!--<div class="flash-notice">-->
+			        						{{ flash_message }}
+			    					<!--</div>-->
+			    				</div>
+							{% endfor %}	
+							{% for flash_message in app.session.flashbag.get('error') %}
+                                <div class="flash-notice" style="color:red">
+                                    {{ flash_message }}
+                            	</div>
+                			{% endfor %}					
+					</div>
+				</div>
+				</div>
+				</center>
+
+ 				<button onclick="location.href='/proyectos/user'" class=" boton_tabla float-right"> &nbsp;Regresar</button>  
+ 				<spam class="titulo">Nuevo avance </spam>
+                <hr>
+ 				<div class="row">
+                    <div class="container col-lg-6 col-centrada">
+                       <center> <spam class="titulo">Ingresar información</spam></center>
+                        {{ form_errors(form) }}
+                        {{ form_start(form) }}
+                            {{ form_row(form.proyectoid, {'label_attr': {'style': 'visibility: hidden; position: absolute'}
+                                                        ,'attr': {'style': 'visibility: hidden; position: absolute'}} ) }}
+                            <div class="formato" >
+                            {{ form_row(form.archivoavance,  {'label_attr': {'class': 'label'}
+								                            ,'attr': {'class': 'atributo'}} ) }}  
+                            </div>
+                            <div class="formato" >
+                            {{ form_row(form.fechaavance,  {'label_attr': {'class': 'label'}
+								                            ,'attr': {'class': 'atributo'}} ) }} 
+							</div>
+							<div class="formato" >
+                            {{ form_row(form.observaciones,  {'label_attr': {'class': 'label'}
+								                            ,'attr': {'class': 'atributo'}} ) }}    
+							</div>           
+                        {{ form_end(form) }}
+                    </div>
+                </div>  
+
+ 				<h4>Avances</h4>
+                <hr>
+
+                <!-- DataTables -->
+                <div class="card mb-3">
+                  	<div class="card-body">
+                    	<div class="table-responsive">
+                    	{% if avancesproyectos %}
+                      		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                        <thead>
+		                          <tr class="card-header">
+		                             <th>Fecha</th>
+	                                 <th>Observaciones</th>
+	                                 <th>Avance (PDF)</th>
+	                                 <th><center>Opciones</center></th>
+		                          </tr>
+		                        </thead>
+		                        <tfoot>
+		                          <tr>
+		                            <th>Fecha</th>
+	                                <th>Observaciones</th>
+	                                <th>Avance (PDF)</th>
+	                                <th><center>Opciones</center></th>
+		                          </tr>
+		                        </tfoot>
+                        		<tbody>    
+                               	 {% for avancesproyecto in avancesproyectos  %}                    
+	                                  <tr>
+	                                      <td>{{ avancesproyecto.fechaavance  | date('d - M - Y')|replace({
+	                                            'Enero'  : 'Enero',
+	                                            'Diciembre' : 'Diciembre',
+	                                            'Lunes'   : 'Lunes',                  
+	                                            'Domingo'   : 'Domingo'
+	                                          })}} </td>
+	                                      <td>{{ avancesproyecto.observaciones }}</td>
+	                                      <td><a href="{{ asset('uploads/avances/' ~ avancesproyecto.archivoavance) }}"  target="_blank">Abrir PDF </a> </td>
+			                            <td>
+			                            	<center>	                  
+				                            <a href="/avance/delete/{{ avancesproyecto.id }}/{{ proyecto.idproyecto}}" title="Eliminar" class="icono_tabla " onclick="if (! confirm('Esta seguro de eliminar a: {{ avancesproyecto.id }}')) return false;"  ><i class="fa fa-eraser" aria-hidden="true"></i></a>
+				                            <a href="/galeria/{{ avancesproyecto.id }}/{{ proyecto.idproyecto}}"  class="icono_tabla "  title="Subir Avance"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
+				                            </center>
+				                        </td>
+			                        </tr>   
+			                    {% endfor %}           
+		                        </tbody>
+                      		</table>
+                      	{% else %}
+							<p> No hay avances registrados aún </p>
+						{% endif %}
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+              <!-- /.container-fluid -->
+</div>
+            <!-- /.content-wrapper -->
+            <!--fin Contenido-->
+
+   
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+                <button onclick="location.href='/compras'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">Factura Nº: {{ compra.numerofactura  }}</spam>
+                <hr>
+                <center>
+                  <table class="tabla2">
+                    <tbody >
+                      <tr>
+                        <th class="fila" >Proveedor:</th>
+                        <td  class="fila">
+                        {% for proveedor in proveedor %}
+                          {% if compra.proveedorid == proveedor %}
+                            {{ proveedor.nombreproveedor  }}
+                          {% endif %}
+                        {% endfor %}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="fila">Fecha:</th>
+                        <td class="fila">{{ compra.fechaemision | date('d - M - Y')|replace({
+                                              'Enero'  : 'Enero',
+                                              'Diciembre' : 'Diciembre',
+                                              'Lunes'   : 'Lunes',                  
+                                              'Domingo'   : 'Domingo'
+                                            })}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </center> 
+                <hr>
+                 <!-- DataTables -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      {% if detallecompra %}
+                          <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                            <thead>
+                              <tr class="card-header">
+                                <th>Cantidad</th>
+                                <th>Decripción</th>
+                                <th>P. Unitario</th>
+                                <th>P. Total</th>
+                              </tr>
+                            </thead>
+                            
+                            <tbody>    
+                            {% for detallecompra in detallecompra %}                    
+                              <tr>
+                                <td>{{ detallecompra.cantidad }}</td>
+                                <td>{{ detallecompra.detalle }}</td>
+                                <td style="text-align: right">{{ detallecompra.preciounitario }}</td>
+                                <td style="text-align: right">{{ detallecompra.preciototal }}</td>
+                              </tr>   
+                          {% endfor %}  
+                              <tr>
+                                <th colspan="3" style="text-align: right">Sub total:</th>                                
+                                <th style="text-align: right">{{ compra.subtotal }}</th>
+                              </tr>
+                              <tr>
+                                <th colspan="3" style="text-align: right">Iva 12%:</th>
+                                <th style="text-align: right">{{ compra.iva }}</th>
+                              </tr>
+                              <tr>
+                                <th colspan="3" style="text-align: right">Total:</th>
+                                <th style="text-align: right">{{ compra.total }}</th>
+                              </tr>         
+                            </tbody>
+                          </table>
+                        {% else %}
+                          <p> No hay marcas registradas aun </p>
+                        {% endif %}
+                      </div>
+                    </div>
+                </div>
+             <!-- Fin DataTables -->                  
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

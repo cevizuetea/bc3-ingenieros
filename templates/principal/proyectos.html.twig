@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>BC3-INGENIEROS</title>
+
+  <link rel="icon" href="img/icono.png" type="image/x-icon" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/simple-line-icons.css">
+  <link rel="stylesheet" href="css/slicknav.css">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link rel="stylesheet" href="css/owl.theme.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  {% block stylesheets %}{% endblock %}
+</head>
+<body>
+ <!-- HEADER -->
+ <header id="hero-area">    
+   <div class="overlay" style="background: black; opacity: .6"></div>
+   <nav class="navbar navbar-expand-lg navbar-light fixed-top scrolling-navba bg-faded" id="white-bg" style="background: #F7F7F7;">
+    <div class="container" >
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><img src="img/bc3-01.png" alt=""></a>  
+      </div> 
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto w-100 justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="/login#hero-area">INICIO</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login#about">NOSOTROS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/servicios">SERVICIOS</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" href="/login#galeria">GALERIA</a>
+          </li>            
+          <li class="nav-item">
+            <a class="nav-link" href="/login#contact">CONTÁCTANOS</a>
+          </li>
+          <li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</li>
+          <li class="nav-item">
+            <a class="nav-link" href="" data-toggle="modal" data-target="#login"><i class="fa fa-sign-in" aria-hidden="true" ></i> INICIAR SESIÓN</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>  
+
+  <!-- MENU MOBILE  -->
+  <ul class="mobile-menu">
+    <li>
+      <br><a href="#hero-area">INICIO</a>
+    </li>
+    <li>
+      <a href="#about">NOSOTROS</a>
+    </li>
+    <li>
+      <a href="#services">SERVICIOS</a>
+    </li>
+    <li>
+      <a href="#galeria">GALERIA</a>
+    </li>
+    <li>
+      <a href="#contact">CONTÁCTANOS</a>
+    </li>
+    <li>
+      <a href="" data-toggle="modal" data-target="#login"><i class="fa fa-sign-in" aria-hidden="true" ></i> INICIAR SESIÓN</a>
+    </li>
+  </ul>
+  <!-- FIn MENU MOBILE-->   
+
+  
+
+</header>
+<!-- FIN HEADER--> 
+
+<br><br><br>
+
+<!-- Banner area -->
+<div class="container-fluid">
+<section class="" style="background: #4B4B4B ">
+  
+    <br><br><br>
+    <p class="text_service" style="color: #97F06D" >NUESTROS PROYECTOS</p>
+    <br>
+  
+</section>
+</div>
+<!-- End Banner area -->
+
+<div class="container">
+  <br>  
+  {% if proyectos %}
+  {% set i = 1 %}
+  {% for proyecto in proyectos %}
+  <br> 
+  {% if i == 1 %}
+  {% set i = 2 %}
+    <div class="row">
+      <div class="col-sm-7" >
+        <div class="card">
+          <div class="card-body">                            
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    {% set j = 1 %}   
+                    {% for avance in avances %}                 
+                      {% if proyecto == avance.proyectoid %}            
+                        {% for galerias in galeria %}              
+                          {% if avance == galerias.avanceid %}
+                            {% if j == 1 %}                          
+                                <div class="carousel-item active">
+                                  <img src="{{ asset('uploads/galeria/' ~ galerias.nombreimagen) }}" class="d-block w-100" alt="...">
+                                </div>
+                                {% set j = 0 %}                            
+                            {% else %}
+                                <div class="carousel-item">
+                                  <img src="{{ asset('uploads/galeria/' ~ galerias.nombreimagen) }}" class="d-block w-100" alt="...">
+                                </div>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5" >
+        <div class="card">
+          <div class="card-body" style="background: #E8FFE2">
+            <p class="text_service">{{ proyecto.nombreproyecto }}</P>
+              <p class="card-text" style="text-align: justify;">{{ proyecto.direccionproyecto }}</p>
+              <p class="card-text" style="text-align: justify;">{{ proyecto.fechainicio  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}} al {{ proyecto.fechafin  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}} </p>
+
+              <br><br><br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    <br>
+  {% else %}
+  {% set i = 1 %}
+    <div class="row">
+      <div class="col-sm-5" >
+        <div class="card">
+          <div class="card-body"  style="background: #E8FFE2">
+            <p class="text_service">{{ proyecto.nombreproyecto }}</P>
+              <p class="card-text" style="text-align: justify;">{{ proyecto.direccionproyecto }}</p>
+              <p class="card-text" style="text-align: justify;">{{ proyecto.fechainicio  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}} al {{ proyecto.fechafin  | date('d - M - Y')|replace({
+                                            'Enero'  : 'Enero',
+                                            'Diciembre' : 'Diciembre',
+                                            'Lunes'   : 'Lunes',                  
+                                            'Domingo'   : 'Domingo'
+                                          })}} </p>
+              <br><br><br><br>
+            </div>
+          </div>
+        </div>
+      <div class="col-sm-7" >
+        <div class="card">
+          <div class="card-body">                            
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    {% set j = 1 %}   
+                    {% for avance in avances %}                 
+                      {% if proyecto == avance.proyectoid %}            
+                        {% for galerias in galeria %}              
+                          {% if avance == galerias.avanceid %}
+                            {% if j == 1 %}                          
+                                <div class="carousel-item active">
+                                  <img src="{{ asset('uploads/galeria/' ~ galerias.nombreimagen) }}" class="d-block w-100" alt="...">
+                                </div>
+                                {% set j = 0 %}                            
+                            {% else %}
+                                <div class="carousel-item">
+                                  <img src="{{ asset('uploads/galeria/' ~ galerias.nombreimagen) }}" class="d-block w-100" alt="...">
+                                </div>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+      
+      </div>
+    {% endif %}
+
+    {% endfor %}
+    {% endif %}
+    </div>
+    {{ include('principal/footer.html.twig')}}
+
+    <!-- MODAL LOGIN-->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <img src="img/bc3-01.png" alt="" style="width: 15%">
+            <h4 class="modal-title text_modal" id="exampleModalCenterTitle">&nbsp; &nbsp;Iniciar sesión</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <center>
+              {% if error %}
+              <span class="error">{{ error.messageKey }}</span>
+              {% endif %}
+              <form action="{{ path('app_login') }}" method="post">
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="text" id="inputUsername"  class="form-control input" placeholder="Usuario" required="required" autofocus="autofocus" name="_username" value="{{ last_username }}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="password" id="inputPassword" name="_password" class="form-control input" placeholder="Contraseña" required="required">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="remember-me">
+                      Remember Password
+                    </label>
+                  </div>
+                </div>
+                
+                <!--<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')}}" /> 
+                {% if is_granted('ROLE_USER') %}
+                        <input type="hidden" name="_target_path" value="/empleado" />
+
+                {% elseif is_granted('ROLE_ADMIN') %}
+                        <input type="hidden" name="_target_path" value="/proyectos" />
+                        {% endif %}-->
+
+                        <button type="submit" class="button_all" name="login" >Iniciar sesión</button>
+                      </form>
+
+                    </center>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!--FIN MODAL LOGIN-->
+
+            <div class="container">
+              {% block body %}{% endblock %}
+            </div>
+
+            <!-- jQuery first, then Tether, then Bootstrap JS. -->
+            <script src="js/jquery-min.js"></script>
+            <script src="js/tether.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/mixitup.min.js"></script>
+            <script src="js/owl.carousel.min.js"></script>    
+            <script src="js/jquery.slicknav.js"></script>    
+            <script src="js/jquery.nav.js"></script>    
+            <script src="js/smooth-scroll.js"></script>    
+            <script src="js/smooth-on-scroll.js"></script>    
+            <script src="js/wow.js"></script>    
+            <script src="js/jquery.counterup.min.js"></script>    
+            <script src="js/waypoints.min.js"></script>    
+            <script src="js/main.js"></script>
+
+
+            {% block javascripts %}{% endblock %}
+          </body>
+          </html>

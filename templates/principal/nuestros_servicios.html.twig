@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>BC3-INGENIEROS</title>
+
+    <link rel="icon" href="img/icono.png" type="image/x-icon" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/simple-line-icons.css">
+    <link rel="stylesheet" href="css/slicknav.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+   <!-- HEADER -->
+ <header id="hero-area">    
+   <div class="overlay" style="background: black; opacity: .6"></div>
+   <nav class="navbar navbar-expand-lg navbar-light fixed-top scrolling-navba bg-faded" id="white-bg" style="background: #F7F7F7;">
+    <div class="container" >
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><img src="img/bc3-01.png" alt=""></a>  
+      </div> 
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto w-100 justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="/login#hero-area">INICIO</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login#about">NOSOTROS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/servicios">SERVICIOS</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" href="/login#galeria">GALERIA</a>
+          </li>            
+          <li class="nav-item">
+            <a class="nav-link" href="/login#contact">CONTÁCTANOS</a>
+          </li>
+          <li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</li>
+          <li class="nav-item">
+            <a class="nav-link" href="" data-toggle="modal" data-target="#login"><i class="fa fa-sign-in" aria-hidden="true" ></i> INICIAR SESIÓN</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>  
+
+  <!-- MENU MOBILE  -->
+  <ul class="mobile-menu">
+    <li>
+      <br><a href="#hero-area">INICIO</a>
+    </li>
+    <li>
+      <a href="#about">NOSOTROS</a>
+    </li>
+    <li>
+      <a href="#services">SERVICIOS</a>
+    </li>
+    <li>
+      <a href="#galeria">GALERIA</a>
+    </li>
+    <li>
+      <a href="#contact">CONTÁCTANOS</a>
+    </li>
+    <li>
+      <a href="" data-toggle="modal" data-target="#login"><i class="fa fa-sign-in" aria-hidden="true" ></i> INICIAR SESIÓN</a>
+    </li>
+  </ul>
+  <!-- FIn MENU MOBILE-->   
+
+  
+
+</header>
+<!-- FIN HEADER--> 
+
+    <br><br><br>
+
+    <!-- Banner area -->
+    <section class="banner_area" data-stellar-background-ratio="0.5">
+        <ol class="breadcrumb">
+        </ol>
+    </section>
+    <!-- End Banner area -->
+    
+    <!-- Our Services Area -->
+    <section class="our_services_tow">
+        <div class="container">
+            <div class="architecture_area services_pages">
+                <div class="portfolio_filter portfolio_filter_2">
+
+                    <ul>
+                        <li  onclick="mostrar_ing(); this.className='active'; "><a href="#" ></i>INGENIERÍA</a></li>
+                        <li  onclick="mostrar_mecanica(); this.className='active'; return false;"><a href="#" >MECÁNICA</a></li>
+                        <li  onclick="mostrar_autom(); this.className='active'; return false;"><a href="#" >AUTOMATIZACIÓN Y CONTROL</a></li>
+                        <li  onclick="mostrar_mantenimiento(); this.className='active'"><a href="#" ></i>MANTENIMIENTO</a></li>
+                        <li  onclick="mostrar_telec(); this.className='active'"><a href="#" ></i>TELECOMUNICACIONES</a></li>
+                    </ul>
+                </div>
+                <br>
+                  <!--ingenieria-->
+                  <div class="container" id="ingenieria" style="display:none;" >
+                    <div class="row">
+                        <div class="col-sm-6" >
+                          <div class="card">
+                            <div class="card-body">                            
+                              <img src="img/servicios/ing_detalle.jpg" class="card-img-top" alt="...">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6" >
+                          <div class="card">
+                            <div class="card-body" >
+                              <p class="text_service">ESPECIALIDAD INGENIERÍA DE DETALLE</P>
+                              <p class="card-text" style="text-align: justify;">BC3 S.A. se ha especializado en la consultoría en diseño para ingenierías Básicas y de Detalle en instrumentación y control de plantas industriales, ingeniería eléctrica, ingeniería mecánica y Telecomunicación</p>
+                              <br><br><br><br>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">                            
+                              <p class="text_service">ESPECIALIDAD CIVIL</P>
+                              <p class="card-text" style="text-align: justify;">En BC3S.A con el fin de poder participar enlos proyectos tipo EPC y teniendo en cuenta que el objetivo principal en la construcción es el desarrollo interdisciplinario, ofrece esta especialidad, incluyendo los siguientes servicios:</p>
+                              <ul>
+                                <li style=" list-style: square inside">Construcción de todo tipo de infraestructura Civil industrial.</li>
+                                <li style="list-style: square inside">Mantenimientos civiles industriales.</li>
+                                <li style=" list-style: square inside">Construcción de redes subterráneas industriales.</li>
+                                <li style="list-style: square inside">Construcción de Box Cuvert.</li>
+                                <li style=" list-style: square inside">Construcción y adecuación de diques para tanques.</li>
+                                <li style=" list-style: square inside">Construcción de bases para equipos industriales.</li>
+                                <li style=" list-style: square inside">Construcción de pisos industriales</li>
+                                <li style=" list-style: square inside">Mampostería Estructural.</li>
+                                <li style=" list-style: square inside">Aplicación de productos especiales para pisos industriales.</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <img src="img/servicios/ing_civil.jpg" class="card-img-top" alt="...">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <br>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">                            
+                              <img src="img/servicios/ing_electrica.jpg" class="card-img-top" alt="...">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <p class="text_service">ESPECIALIDAD ELÉCTRICA</P>
+                              <p class="card-text" style="text-align: justify;">BC3S.A. Cuenta con un equipo de trabajo con experiencia y actualizado en las últimas tendencias en materia de energía.</p>
+                              <ul>
+                              <li style=" list-style: square inside">Montaje de Subestaciones Eléctricas</li>
+                              <li style="list-style: square inside">Montaje de Centros de Potencia.</li>
+                              <li style=" list-style: square inside">Montaje de Centro de Control de Motores.</li>
+                              <li style="list-style: square inside">Montajes de Transformadores.</li>
+                              <li style=" list-style: square inside">Montaje de Redes de media y baja tensión.</li>
+                              <li style=" list-style: square inside">Montaje de UPS y equipos especiales.</li>
+                              <li style=" list-style: square inside">Tendido de cbles y conexionado</li>
+                              <li style=" list-style: square inside">Sistemas de puesta a tierra y apantallamiento.</li>
+                              <li style=" list-style: square inside">Tendido y montaje de bandejas portacables y tuberías conduit.</li>                            
+                            </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">                            
+                              <p class="text_service">PRECOMISIONAMIENTO, COMISIONAMIENTO Y PUESTA EN MARCHA DE PLANTAS NDUSTRIALES</P>
+                              <p class="card-text" style="text-align: justify;">En las especialidades eléctrica, Instrumentación y control.</p>
+                              <ul>
+                                <li style=" list-style: square inside">Precomisionamiento: Pruebas de funcionamiento y comunicación bajo condiciones simuladas.</li>
+                                <li style=" list-style: square inside">Comisionamiento: Pruebas de Pre-arranque para garantizar el correcto inicio de la operación.</li>
+                                <li style=" list-style: square inside">Puesta en marcha: Arranque de la planta.</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <img src="img/servicios/instrumentacion.jpg" class="card-img-top" alt="...">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                <!--fin ingenieria-->
+
+                  <!--mecanica-->
+                  <div class="container" id="mecanica" style="display:none;" >
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">
+                            <p class="text_service">ESPECIALIDAD MECÁNICA</P>
+                            <p class="card-text">Más que un contratista podemos ser el aliado estratégico que las empresas necesitan para desarrollar sus proyectos.</p>
+                            <ul>
+                              <li style=" list-style: square inside">Fabricación y montaje de estructuras.</li>
+                              <li style="list-style: square inside">Prefabricación y montaje de tuberías para procesos.</li>
+                              <li style=" list-style: square inside">Prefabricación y montaje de ductos.</li>
+                              <li style="list-style: square inside">Montaje de equipos especiales.</li>
+                              <li style=" list-style: square inside">Aplicación de materiales ignifugos.</li>
+                              <li style=" list-style: square inside">Montaje de sistema contra incendios</li>
+                              <li style=" list-style: square inside">Construcción de tanques</li>
+                              <li style=" list-style: square inside">Aplicación de pinturas industriales.</li>
+                              <li style=" list-style: square inside">Montaje de equipos (Calderas, intercambiadores, torres de enfriamiento, compresores, hornos, bombas).</li>                            
+                            </ul>
+                            <br>
+                            <p class="text_service">ESPECIALIDAD DETENCIÓN DE INCENCIO</P>
+                            <p class="card-text" style="text-align: justify;">En BC3 S.A. Contamos con el personal entrenado, calificado y con equipos para la instalación y montaje de sistema detección de incendio, al igual de personal certificado. - Detección es la clave para cualquier sistema contra incendio, las soluciones de detección temprana de humo y calor, así como los sistemas de extinción y evacuación, son indispensables para prevenir pérdidas humanas y daños materiales.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">
+                            <img src="img/servicios/ing_mecanica.jpg" class="card-img-top" alt="...">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                      <br><img src="img/servicios/diagrama.png" class="card-img-top" alt="...">
+                  </div>
+                <!--fin mecanica-->
+
+                  <!--automatizacion-->
+                  <div class="container" id="automatizacion" style="display:none;" >
+                  <div class="row">
+                      <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">                            
+                            <img src="img/servicios/auto_control.png" class="card-img-top" alt="...">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">
+                            <p class="text_service">ESPECIALIDAD AUTOMATIZACIÓN Y CONTROL</P>
+                            <p class="card-text" style="text-align: justify;">En BC3 S.A. es especialista en el área de automatización y control a través de los servicios de Montaje de Sistemas para automatización del tipo:</p>
+                            <ul>
+                              <li style=" list-style: square inside; text-align: justify;">Configuraión de software y hardware para programación de PLC y sistemas HMI (Interfaces hombre máquina)</li>
+                              <li style=" list-style: square inside; text-align: justify;">Redes MODBUS, ETHERNET, CONTROLNET, DEVICENET</li>
+                              <li style=" list-style: square inside; text-align: justify;">Manejo y configuración de variadores de velocidad y arrancadores suaves.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">                            
+                              <p class="text_service">ESPECIALIDAD SISTEMA DE CLIMATIZACIÓN Y VENTILACIÓN INDUSTRIALL</P>
+                              <p class="card-text" style="text-align: justify;">BC3 S.A.  le ofrece la asistencia técnica o de ingeniería en el uso de sistema de industrial con la mejor solución a sus necesidades de extracción e inyección de aire a todo tipo de ambiente. La instalación o aplicación de sistema de climatización residencial, comercial o industrial con equipos de expansión directa, sistema de agua helada (chillers, UMAs, etc.).</p>
+                              <p class="text_service">INGENIERÍA HVAC</P>
+                              <ul>
+                                <li style=" list-style: square inside; text-align: justify;">Asistencia técnica sobre el uso de materiales HVAC de acuerdo al proceso</li>
+                                <li style="list-style: square inside; text-align: justify;">Desarrollamos sus proyectos de HVAC desde cero de acuerdo a sus necesidades cubriendo aspectos de ingeniería, confort, diseño y tecnología.</li>
+                                <li style=" list-style: square inside; text-align: justify;">Nos especializamos en diseño de cálculo de cargas térmicas, edificios nuevos, naves industriales, re-diseño de cargas existentes, contamos con software de cálculo con base de datos de las regiones y condiciones climátias dentro de la república de acuerdo a la memoria de cáalculo realizada.</li>
+                              </ul>
+                              <br><br>
+                              <p class="text_service">SISTEMA DE AIRE ACONDICIONADO</P>
+                              <ul>
+                                <li style="list-style: square inside; text-align: justify;">Seleccionamos y proyectamos los equipos de aire acondicionado que cubran con sus necesidades siemprecuidando el cnfort, diseño y tecnología.</li>
+                                <li style=" list-style: square inside; text-align: justify;">Tecnología: VRF, Chiller, UMA, Sistema dividido, Minisplits.</li>
+                                <li style=" list-style: square inside; text-align: justify;">Diseño, suministro e instalación de Ductería para el aire acondicionado.</li>
+                                <li style=" list-style: square inside; text-align: justify;">Ductería en lámina galvanizada, espero ducto, ducto pre-aislada de aluminio</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <img src="img/servicios/ventilacion.jpg" class="card-img-top" alt="...">  
+                              <br><br>
+                              <img src="img/servicios/aire_acondicionado.jpg" class="card-img-top" alt="...">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                <!--fin automatizacion-->
+
+                  <!--mantenimiento-->
+                  <div class="container" id="mantenimiento" style="display:none;" >
+                    <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">                            
+                              <img src="img/servicios/mantenimiento.jpg" class="card-img-top" alt="...">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <p class="text_service">ESPECIALIDAD EN MANTENIMIENTO INDUSTRIAL Y COMERCIAL</P>
+                              <p class="card-text" style="text-align: justify;">BC3 S.A. es especialista en el Mantenimiento de equipos rotativos, estáticos, calderas, tubería de proceso, tanques, intercambiadores de calor, hornos industriales, silos de almacenamiento, reactores y equipos industriales en las especialidades eléctricas, instrumentación, mecánica, aislamiento térmico.</p>
+                              <br><br><br>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">                            
+                              
+                              <p class="text_service">ESPECIALIDAD INSTRUMENTACIÓN INDUSTRIAL</P>
+                              <p class="card-text" style="text-align: justify;">Con nuestros servicios de instrumentación y control usted podrá encontrarla experienciayelpersonal capacitado,paraafrontarlos retosdelmercado.</p>
+                              <ul>
+                              <li style=" list-style: square inside; text-align: justify;">Calibración de Instrumentación electrónica y neumática, para Variable Presión</li>
+                              <li style=" list-style: square inside; text-align: justify;">Calibración de Instrumentación electrónica para Variable Temperatura.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Mantenimiento y calibración válvulas de alivio.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Mantenimiento y calibración válvulas de control.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Pruebas de lazo.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Asistencia en arranque de plantas.</li>
+                            </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <img src="img/servicios/instrumentacion-industrial.png" class="card-img-top" alt="...">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <!--fin mantenimiento-->
+
+                  <!--telecomunicaciones-->
+                  <div class="container" id="telecomunicaciones" style="display:none;" >
+                    <p class="text_service">ESPECIALIDAD EN TELECOMUNICACIÓN Y SISTEMA DE VIDEO VIGILANCIA</P>
+                   <div class="row">
+                      <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">                            
+                            <img src="img/servicios/telecomunicaciones.png" class="card-img-top" alt="...">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">
+                            <p class="text_service">TELECOMUNICACIONES</P>
+                            <p class="card-text" style="text-align: justify;">BC3 S.A es una Empresa Dedicada a Proveer soluciones de tecnología de la información y servicio de Ingeniería en Telecomunicación</p>
+                            <p class="card-text" style="text-align: justify;">Es la implementación de la conectividad local y externa, con dispositivo y conductores que optimizaran su transferencia de información del hogar o empresa. Las instalaciones más comunes son; Puestos de datos (cable UTP CAT-6), montaje de Rack, Ordenadores de cables (Patch), Router, Switch, Puntos de acceso (Comunicación inalámbrica), etc. Estas mejoras pueden ser convergentes, ya que pueden solucionar la situación específica que se necesita, y a la vez dejar habilitado para una posterior expansión de la misma red, de este modo se tendrá una red eficaz y saludable</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br> 
+                     <div class="row">
+                      <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">       
+                            <p class="text_service">SISTEMA DE CCTV</P>
+                            <p class="card-text" style="text-align: justify;">BC3 S.A. Diseñador de sistema de CCTV por un equipo Humano profesional de probada experiencia, apoyado por importante recursos físicos y técnico para satisfacer las necesidades más exigentes de nuestros clientes.</p>
+                            <p class="card-text" style="text-align: justify;">El sistema de CCTV comprende de instalaciones en sistemas de vigilancia, tales como; DVR (Híbridos, Ip y Análogos),  Cámaras (Análogas e IP), alarmas y dispositivos complementarios. a seguridad tecnológica es fundamental como medio  disuasivo y correctivo, ya que este permite generar confianza en los clientes y en la propia empresa, o a su vez en el  hogar que desea implementar, a la hora de ser correctivo, puede ser un medio de alerta temprana en un hecho irregular en su propiedad, o como medio de prueba en un hecho similar</p>                     
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">
+                            <img src="img/servicios/telecomunicaciones_1.png" class="card-img-top" alt="...">                            
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br> 
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">                            
+                            <img src="img/servicios/domotica.png" class="card-img-top" alt="...">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">
+                            <p class="text_service">SISTEMA DE DOMÓTICO</P>
+                            <p class="card-text" style="text-align: justify;">BC3 S.A. es especialista en Domótica o Sistema de Seguridad para su Hogar y Empresa. Integra las mejores tecnologías disponibles en el mercado de acuerdo a cada necesidad. Realizamos proyectos de:</p>
+                            <ul>
+                              <li style=" list-style: square inside; text-align: justify;">Domótica o Casa Inteligente.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Cámaras de Seguridad CCTV.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Cámaras IP.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Cerco Eléctrico.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Alarmas de Seguridad Cableadas e inalámbricas, básicas y Profesionales.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Protección Perimetral.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Portones Eléctricos, abatibles y correderas.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Iluminación Led a Condominios, Oficina e Industria.</li>
+                              <li style=" list-style: square inside; text-align: justify;">Iluminación Solar Led.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!--fin telecomunicaciones-->
+                  
+            </div>
+        </div>
+    </section>
+    <!-- End Our Services Area -->
+
+   {{ include('principal/footer.html.twig')}}
+
+   <!-- MODAL LOGIN-->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="img/bc3-01.png" alt="" style="width: 15%">
+        <h4 class="modal-title text_modal" id="exampleModalCenterTitle">&nbsp; &nbsp;Iniciar sesión</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <center>
+        {% if error %}
+          <span class="error">{{ error.messageKey }}</span>
+        {% endif %}
+         <form action="{{ path('app_login') }}" method="post">
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="text" id="inputUsername"  class="form-control input" placeholder="Usuario" required="required" autofocus="autofocus" name="_username" value="{{ last_username }}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="password" id="inputPassword" name="_password" class="form-control input" placeholder="Contraseña" required="required">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="remember-me">
+                      Remember Password
+                    </label>
+                  </div>
+                </div>
+                
+                <!--<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')}}" /> 
+                {% if is_granted('ROLE_USER') %}
+                        <input type="hidden" name="_target_path" value="/empleado" />
+
+                {% elseif is_granted('ROLE_ADMIN') %}
+                        <input type="hidden" name="_target_path" value="/proyectos" />
+                {% endif %}-->
+
+                <button type="submit" class="button_all" name="login" >Iniciar sesión</button>
+        </form>
+            
+        </center>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--FIN MODAL LOGIN-->
+
+   <div class="container">
+      {% block body %}{% endblock %}
+  </div>
+
+  <!-- jQuery first, then Tether, then Bootstrap JS. -->
+  <script src="js/jquery-min.js"></script>
+  <script src="js/tether.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/mixitup.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>    
+  <script src="js/jquery.slicknav.js"></script>    
+  <script src="js/jquery.nav.js"></script>    
+  <script src="js/smooth-scroll.js"></script>    
+  <script src="js/smooth-on-scroll.js"></script>    
+  <script src="js/wow.js"></script>    
+  <script src="js/jquery.counterup.min.js"></script>    
+  <script src="js/waypoints.min.js"></script>    
+  <script src="js/main.js"></script>
+  <script type="text/javascript">
+    function mostrar_ing(){
+      document.getElementById('mantenimiento').style.display = 'none';
+      document.getElementById('automatizacion').style.display = 'none';
+      document.getElementById('telecomunicaciones').style.display = 'none';
+      document.getElementById('mecanica').style.display = 'none';
+      document.getElementById('ingenieria').style.display = 'block';}
+
+    function mostrar_mecanica(){
+      document.getElementById('ingenieria').style.display = 'none';
+      document.getElementById('mantenimiento').style.display = 'none';
+      document.getElementById('automatizacion').style.display = 'none';
+      document.getElementById('telecomunicaciones').style.display = 'none';
+      document.getElementById('mecanica').style.display = 'block';}
+    function mostrar_autom(){
+      document.getElementById('ingenieria').style.display = 'none';
+      document.getElementById('mantenimiento').style.display = 'none';
+      document.getElementById('telecomunicaciones').style.display = 'none';
+      document.getElementById('mecanica').style.display = 'none';
+      document.getElementById('automatizacion').style.display = 'block';}
+    function mostrar_mantenimiento(){
+      document.getElementById('telecomunicaciones').style.display = 'none';
+      document.getElementById('automatizacion').style.display = 'none';
+      document.getElementById('mecanica').style.display = 'none';
+      document.getElementById('ingenieria').style.display = 'none';
+      document.getElementById('mantenimiento').style.display = 'block';}
+    function mostrar_telec(){
+      document.getElementById('mantenimiento').style.display = 'none';
+      document.getElementById('automatizacion').style.display = 'none';
+      document.getElementById('mecanica').style.display = 'none';
+      document.getElementById('ingenieria').style.display = 'none';
+      document.getElementById('telecomunicaciones').style.display = 'block';}
+    </script>
+
+  {% block javascripts %}{% endblock %}
+</body>
+</html>

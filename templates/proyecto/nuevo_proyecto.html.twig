@@ -1,0 +1,82 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}  {% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+                <button onclick="location.href='/proyectos'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">Nuevo proyecto</spam>
+                <hr>
+                <div class="row">
+                    <div class="container col-lg-6 col-centrada">
+                       <center> <spam class="titulo">Ingresar información</spam></center>
+                        {{ form_start(form) }}
+                        
+
+                        <div class="formato" >
+                            {{ form_row(form.clienteid, {'label_attr': {'class': 'label'}
+                                                        ,'attr': {'class': 'atributo'}} ) }}
+                        </div>
+                        <div class="formato" >
+                            {{ form_row(form.trabajadorid,  {'label_attr': {'class': 'label'}
+                                                        ,'attr': {'class': 'atributo'}} ) }}
+                        </div>
+                        <div class="formato" >
+                            {{ form_row(form.estadoid, {'label_attr': {'class': 'label'}
+                                                        ,'attr': {'class': 'atributo'}} ) }}
+                         </div>
+                        <div class="formato" >                               
+                            {{ form_row(form.nombreproyecto,  {'label_attr': {'class': 'label'}
+                                                        ,'attr': {'class': 'atributo'}} ) }}
+                        </div>
+                        <div class="formato" >
+                            {{ form_row(form.direccionproyecto, {'label_attr': {'class': 'label'}
+                                                        ,'attr': {'class': 'atributo'}} ) }}
+                        </div>
+
+                        <div class="formato" > 
+                            {{form_errors(form)}}
+                            {{ form_row(form.archivocotizacion,  {'label_attr': {'class': 'label'}
+                                                        ,'attr': {'class': 'atributo'}} ) }}  
+                        </div>
+                        <div class="formato" >                                           
+                            {{ form_row(form.fechainicio, {'label_attr': {'class': 'label'}
+                                                            ,'attr': {'class': 'atributo'}} ) }}
+                        </div>
+                        <div class="formato" >
+                            {% for flash_message in app.session.flashbag.get('error_fecha') %}
+                                <div class="flash-notice" style="color:red">
+                                    {{ flash_message }}
+                                </div>
+                            {% endfor %}
+                            {{ form_row(form.fechafin, {'label_attr': {'class': 'label'}
+                                                            ,'attr': {'class': 'atributo'}} ) }}
+                        </div>
+                            
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+				<hr>
+                
+            </div>
+        </div>
+    </div>
+</div>
+	
+  
+
+{% endblock %}
+

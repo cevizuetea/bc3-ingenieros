@@ -1,0 +1,48 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{ marcas.id }}{% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+                <button onclick="location.href='/marcas'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">Marca: {{ marcas.nombremarca }}</spam>
+                <hr>
+                 <center>
+                <table class="tabla2">
+                  <tbody >
+                    <tr>
+                      <th class="fila" >Su ID es:</th>
+                      <td  class="fila">{{ marcas.id  }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Nombre:</th>
+                      <td class="fila">{{ marcas.nombremarca }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Descripción:</th>
+                      <td class="fila">{{ marcas.descripcion }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                </center>    
+				<hr>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

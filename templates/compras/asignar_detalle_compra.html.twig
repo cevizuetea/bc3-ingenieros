@@ -1,0 +1,171 @@
+{% extends 'base_admin.html.twig' %}
+{% block title %}  {% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+    <!-- contenido -->
+        <div id="content-wrapper">
+      <div class="container-fluid">
+                <center>
+                <div class="row"
+                  <div class="container text-center col-lg-6 col-centrada">
+                  <div class="container-fluid" style="height: 25px">
+                       {% for flash_message in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-success" id="mensaje">
+                          <!--<div class="flash-notice">-->
+                                  {{ flash_message }}
+                            <!--</div>-->
+                          </div>
+                      {% endfor %}            
+                  </div>
+                  </div>
+                </div>
+                </center>
+                <button onclick="location.href='/compras'" class=" boton_tabla float-right">&nbsp;Regresar</button>            
+                <spam class="titulo">Factura Nº: {{ compras.numerofactura }} </spam>
+                <hr>
+                <center>
+                <div class="row">
+                  <div class="col">
+                  <table class="tabla2">
+                    <tbody >
+                      <tr>
+                        <th class="fila" >Proveedor:</th>
+                        <td  class="fila">{{ proveedor.nombreproveedor }}</td>
+                      </tr>
+                      <tr>
+                        <th class="fila">Ruc:</th>
+                        <td class="fila">{{ proveedor.ruc }}</td>
+                      </tr>
+                      <tr>
+                        <th class="fila">Fecha de Emisión:</th>
+                        <td class="fila">{{ compras.fechaemision | date('d - M - Y')|replace({
+                                  'Enero'  : 'Enero',
+                                  'Diciembre' : 'Diciembre',
+                                  'Lunes'   : 'Lunes',                  
+                                  'Domingo'   : 'Domingo'
+                                })}} </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="col">
+                  <table class="tabla2">
+                    <tbody>
+                      <tr>
+                        <th class="fila" >Sub Total:</th>
+                        <td  class="fila">$ {{ compras.subtotal }}</td>
+                      </tr>
+                      <tr>
+                        <th class="fila">Iva 12%:</th>
+                        <td class="fila">$ {{ compras.iva }}</td>
+                      </tr>
+                      <tr>
+                        <th class="fila">Total:</th>
+                        <td class="fila">$ {{ compras.total }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+                </center>
+                
+                <hr>               
+                  
+                       <center> <spam class="titulo">Asignar producto</spam></center>
+                      <div class="row ingresar">
+                      <table class="table">
+                      
+                        
+                        {{ form_start(form) }}
+                            <br>
+                            {{ form_row(form.compraid, {'label_attr': {'style': 'visibility: hidden; position: absolute'}
+                                                        ,'attr': {'style': 'visibility: hidden; position: absolute'}} ) }}
+                            <div class="col-lg-2">                   
+                            {{ form_row(form.codigo,  {'label_attr': {'class': 'label'}
+                                                        ,'attr': {'class': 'atributo'}} ) }}               
+                            </div>
+                            <div class="col-lg-1">
+                            {{ form_row(form.cantidad, {'label_attr': {'class': 'label'}
+                                                    ,'attr': {'class': 'atributo'}} ) }}
+                            </div>
+                            <div class="col-lg-5">
+                            {{ form_row(form.detalle, {'label_attr': {'class': 'label'}
+                                                    ,'attr': {'class': 'atributo'}} ) }}
+                            </div>
+                            
+                            <div class="col-lg-2">
+                            {{ form_row(form.preciounitario, {'label_attr': {'class': 'label'}
+                                                    ,'attr': {'class': 'atributo'}} ) }}
+                            </div>
+                            <div class="col-lg-2">
+                            {{ form_row(form.tipo, {'label_attr': {'class': 'label'}
+                                                    ,'attr': {'class': 'atributo'}} ) }}
+                            </div>
+
+                        {{ form_end(form) }}
+                        
+                        </table>
+                    
+                  </div>     
+                <hr>
+                <!-- DataTables -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      {% if detallescompras %}
+                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                              <tr class="card-header">
+                                <th>Cantidad</th>
+                                <th>Detalle</th>
+                                <th>Precio Unitario</th>
+                                <th>Precio Total</th>
+                                <th><center>Eliminar producto</center></th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th>Cantidad</th>
+                                <th>Detalle</th>
+                                <th>Precio Unitario</th>
+                                <th>Precio Total</th>
+                                <th><center>Eliminar producto</center></th>
+                              </tr>
+                            </tfoot>
+                            <tbody>    
+                           {% for detallescompra in detallescompras  %}                    
+                                  <tr>
+                                      <td>{{ detallescompra.cantidad}}</td>
+                                      <td>{{ detallescompra.detalle}}</td>
+                                      <td>{{ detallescompra.preciounitario}}</td>
+                                      <td>{{ detallescompra.preciototal}}</td>
+                                      <td>
+                                        <center>                    
+                                        <a href="/factura/compra/disminuir/{{detallescompra.id}}/{{detallescompra.cantidad}}/{{detallescompra.preciototal}}" title="Eliminar" class="icono_tabla " ><i class="fa fa-eraser" aria-hidden="true"></i></a>
+                                        </center>
+                                    </td>
+                                  </tr>   
+                          {% endfor %}           
+                            </tbody>
+                          </table>
+                        {% else %}
+                        <p> No hay productos registrados aún </p>
+                      {% endif %}
+                      </div>
+                    </div>
+                </div>     
+              <!-- Fin DataTables -->
+                
+            </div>
+        </div>
+    </div>
+</div>
+  
+  
+
+{% endblock %}
+

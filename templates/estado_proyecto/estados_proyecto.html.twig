@@ -1,0 +1,86 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<!--DIV CONTENDO-->
+        
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <center>
+                <div class="row"
+                <div class="container text-center col-lg-6 col-centrada">
+					<div class="container-fluid" style="height: 25px">
+							 {% for flash_message in app.session.flashbag.get('notice') %}
+							 	<div class="alert alert-success" id="mensaje">
+									<!--<div class="flash-notice">-->
+			        						{{ flash_message }}
+			    					<!--</div>-->
+			    				</div>
+							{% endfor %}						
+					</div>
+				</div>
+				</div>
+				</center>
+
+ 				<button onclick="location.href='/estado/proyecto/new'" class=" boton_tabla float-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Nuevo</button>            
+ 				<spam class="titulo">ESTADOS DE LOS PROYECTOS</spam>
+                <hr>
+
+                <!-- DataTables -->
+                <div class="card mb-3">
+                  	<div class="card-body">
+                    	<div class="table-responsive">
+                    	{% if estados %}
+                      		<table class="table table-bordered" id="datos" width="100%" cellspacing="0">
+		                        <thead>
+		                          <tr class="card-header">
+		                            <th>Código</th>
+		                            <th>Nombre</th>
+		                            <th>Descripción</th>
+		                            <th>Opciones</th>
+		                          </tr>
+		                        </thead>
+		                        <tfoot>
+		                          <tr>
+		                            <th>Código</th>
+		                            <th>Nombre</th>
+		                            <th>Descripción</th>
+		                            <th>Opciones</th>
+		                          </tr>
+		                        </tfoot>
+                        		<tbody>    
+                        		{% for estado in estados %}                    
+			                        <tr>
+			                         	<td>{{ estado.idestadoproyecto }}</td>
+			                            <td>{{ estado.nombreestadoproyecto }}</td>
+			                            <td>{{ estado.descripcionestadoproyecto }}</td>
+			                            <td>
+				                            <center>	                  
+				                            <a href="/estado/proyecto/edit/{{ estado.idestadoproyecto }}" title="Editar" class="icono_tabla "  ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				                            <a href="/estado/proyecto/delete/{{ estado.idestadoproyecto }}" title="Eliminar" class="icono_tabla " onclick="if (! confirm('Esta seguro de eliminar: {{ estado.nombreestadoproyecto }}')) return false;"><i class="fa fa-eraser" aria-hidden="true"></i></a>
+				                        </td>
+			                        </tr>   
+			                    {% endfor %}           
+		                        </tbody>
+                      		</table>
+                      	{% else %}
+							<p> No hay estados de proyectos registrados aún </p>
+						{% endif %}
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+              <!-- /.container-fluid -->
+</div>
+            <!-- /.content-wrapper -->
+            <!--fin Contenido-->
+
+   
+{% endblock %}

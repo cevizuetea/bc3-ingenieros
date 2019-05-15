@@ -1,0 +1,100 @@
+<!-- HEADER -->
+ <header id="hero-area">    
+   <div class="overlay" style="background: black; opacity: .6"></div>
+    
+
+   
+
+  <div class="container">      
+    <div class="row justify-content-md-center">
+      <div class="col-md-10">
+        <div class="carousel-slider owl-carousel owl-theme">
+          <div class="item active">
+            <div class="contents text-center">
+              <br><br><img class=" wow fadeInUp animated " src="img/bc3-ing.png" alt="" style="width: 20%; height: 20%" > <br><br>
+              <h3 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">SOLUCIONES EN ELECTRICIDAD Y TELECOMUNICACIONES</h3>
+              <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">Nuestro trabajo es compromiso de todos, bajo los valores de integridad, honestidad, responsabilidad, compromiso y transparencia en sus acciones diarias.</p>
+              
+            </div>
+          </div>
+          <div class="item">
+            <div class="contents text-center">
+              <br><br><img class=" wow fadeInUp animated " src="img/mision.jpg" alt="" ><br><br><br>
+              <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">Brindar un servicio al cliente, oportuno y personalizado de manera que satisfaga las necesidades y expectativas de nuestros clientes en el campo eléctrico y telecomunicaciones en proyectos a nivel nacional con estándares de seguridad, calidad y confiabilidad a través de personal altamente calificado, responsable y comprometido</p>
+              
+            </div>
+          </div>
+          <div class="item">
+            <div class="contents text-center">
+              <br><br><img class=" wow fadeInUp animated " src="img/vision.jpg" alt="" ><br><br><br>
+              <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">Ser una empresa de excelencia en proyectos de ingeniería eléctrica y de telecomunicaciones a nivel nacional, con tecnológica innovadora, responsabilidad social, talento humano competente, que garantice la calidad de nuestro trabajo para el bienestar de nuestros clientes.</p>
+              
+            </div>
+          </div>
+        </div>          
+      </div>
+    </div> 
+  </div> 
+
+</header>
+<!-- FIN HEADER--> 
+
+
+
+
+<!-- MODAL LOGIN-->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="img/bc3-01.png" alt="" style="width: 15%">
+        <h4 class="modal-title text_modal" id="exampleModalCenterTitle">&nbsp; &nbsp;Iniciar sesión</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <center>
+        {% if error %}
+          <span class="error">{{ error.messageKey }}</span>
+        {% endif %}
+         <form action="{{ path('app_login') }}" method="post">
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="text" id="inputUsername"  class="form-control input" placeholder="Usuario" required="required" autofocus="autofocus" name="_username" value="{{ last_username }}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="password" id="inputPassword" name="_password" class="form-control input" placeholder="Contraseña" required="required">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="remember-me">
+                      Remember Password
+                    </label>
+                  </div>
+                </div>
+                
+                <!--<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')}}" /> 
+                {% if is_granted('ROLE_USER') %}
+                        <input type="hidden" name="_target_path" value="/empleado" />
+
+                {% elseif is_granted('ROLE_ADMIN') %}
+                        <input type="hidden" name="_target_path" value="/proyectos" />
+                {% endif %}-->
+
+                <button type="submit" class="button_all" name="login" >Iniciar sesión</button>
+        </form>
+            
+        </center>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--FIN MODAL LOGIN-->

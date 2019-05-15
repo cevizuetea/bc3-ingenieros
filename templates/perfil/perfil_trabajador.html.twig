@@ -1,0 +1,56 @@
+{% extends 'base_empleado.html.twig' %}
+
+{% block title %} Clientes {% endblock %}
+
+{% block body %}
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+		<!-- contenido -->
+        <div id="content-wrapper">
+			<div class="container-fluid">
+                <ol class="breadcrumb">
+                 	<li class="breadcrumb-item">
+                    	<a href="#"></a>
+                 	</li>
+                 	<li class="breadcrumb-item active">
+                 		BC3 - INGENIEROS S.A.
+                 	</li>
+                </ol>
+                <hr>
+                <spam class="titulo">BIENVENIDO A BC3-SYSTEM</spam>
+                <hr>
+                <center>
+                <table class="tabla2">
+                  <tbody >
+                    <tr  >
+                      <th class="fila" >Cédula de identidad:</th>
+                      <td  class="fila">{{ datouser.ci }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Nombres y Apellidos:</th>
+                      <td class="fila">{{ datouser.nombres }} {{ datouser.apellidos }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Cargo:</th>
+                      <td class="fila">{{ cargo.nombrecargo }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Dirección:</th>
+                      <td class="fila">{{ datouser.direccion }}</td>
+                    </tr>
+                    <tr>
+                      <th class="fila">Teléfono:</th>
+                      <td class="fila">{{ datouser.telefono }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                </center>
+                <!--<h4>BIENVENIDO: {{ app.user.username }}</h4>-->
+                <hr>                              
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
